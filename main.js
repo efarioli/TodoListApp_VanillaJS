@@ -34,6 +34,7 @@ class Todos {
   op(func, todo) {
     this[`_${func}`](todo)
     this.arrInLocalS = JSON.stringify(this.arrInMemory)
+    localStorage.setItem('myTodos', JSON.stringify(this.arrInMemory))
   }
 }
 
@@ -157,4 +158,10 @@ window.addEventListener('load', () => {
   let todosArrText = localStorage.getItem('myTodos')
   let todosArrObj = JSON.parse(todosArrText)
   todosData = new Todos(todosArrObj, todosArrText)
+  let fragment = document.createDocumentFragment()
+  todosData.arrInMemory.forEach(todo => {
+    let liElement = lihtml(todo)
+    fragment.appendChild(liElement)
+  })
+  ul.appendChild(fragment)
 })
