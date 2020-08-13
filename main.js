@@ -50,3 +50,11 @@ let todosData
 // let todoObj = new Todo('walk the dog')
 // let todoArrObj = new Todos([], '[]')
 // todoArrObj.op('add', todoObj)
+window.addEventListener('load', () => {
+  //localStorage.removeItem('myTodos')// to reset the data
+  if (!localStorage.getItem('myTodos')) localStorage.setItem('myTodos', '[]')
+  console.log(localStorage.getItem('myTodos'))
+  let todosArrText = localStorage.getItem('myTodos')
+  let todosArrObj = JSON.parse(todosArrText)
+  todosData = new Todos(todosArrObj, todosArrText)
+})
