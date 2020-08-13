@@ -146,6 +146,7 @@ const lihtml = todo => {
   </div>
 </div>
 `
+  li.children[1].innerText = todo.task
   li.children[0].children[0].children[0].setAttribute('id', `toggle-${todo.id}`)
   li.children[0].children[0].children[1].setAttribute('for', `toggle-${todo.id}`)
   return li
