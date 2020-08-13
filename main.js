@@ -52,6 +52,7 @@ let todosData
 // todoArrObj.op('add', todoObj)
 const addBtn = document.querySelector('#add')
 const ul = document.querySelector('ul')
+const taskName = document.querySelector('#taskname')
 
 const lihtml = todo => {
   //receives a todo object and return a HTML li elemnt
@@ -165,4 +166,11 @@ window.addEventListener('load', () => {
     fragment.appendChild(liElement)
   })
   ul.appendChild(fragment)
+})
+addBtn.addEventListener('click', () => {
+  let todo = new Todo(taskName.value)
+  todosData.op('add', todo)
+  let liElement = lihtml(todo)
+  ul.appendChild(liElement)
+  taskName.value = ''
 })
