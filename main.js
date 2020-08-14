@@ -84,7 +84,7 @@ const lihtml = todo => {
           class="another-circle"
           cx="40"
           cy="40"
-          r="37"
+          r="36"
         />
 
         <foreignObject x="0" y="0" width="100%" height="100%">
@@ -123,7 +123,7 @@ const lihtml = todo => {
           class="another-circle"
           cx="40"
           cy="40"
-          r="37"
+          r="36"
         />
 
         <foreignObject x="0" y="0" width="100%" height="100%">
