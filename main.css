@@ -369,6 +369,84 @@ input[type='checkbox']:checked + .handle {
 ul {
   transition: all 3s ease-in;
 }
-li > div:nth-child(3) > div > span {
-  height: 100%;
+li > div:nth-child(3) > div > span,
+#add {
+  align-self: center;
 }
+span.final {
+  height: 54px;
+}
+span#addbtn.final {
+  height: 54px;
+  width: 54px;
+  align-self: center;
+  /* height: 100%; */
+}
+
+.taskbutton {
+  width: 300px;
+}
+
+/* ADD SECTION */
+#addsection {
+  display: flex;
+  height: 100px;
+  align-content: center;
+  justify-content: flex-end;
+}
+body > div:nth-child(1) > span {
+  align-self: center;
+  height: 64px;
+  width: 64px;
+}
+body > div:nth-child(1) > span > svg {
+  height: 100%;
+  width: 100%;
+}
+
+#taskname {
+  display: block;
+  width: 400px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  /* align-self: center; */
+  height: 40px;
+  width: 0;
+  outline: 0;
+  transition: all ease 300ms;
+  font-size: 0.5em;
+  border-radius: 5px 5px 0 0;
+  align-self: center;
+}
+#taskname:focus,
+#taskname:active {
+  padding: 5px;
+
+  border-bottom: 2px solid #0a9d85;
+}
+#confirm {
+  /* border: 1px solid red; */
+  display: none;
+  width: 0px;
+  align-self: center;
+  height: 64px;
+  display: flex;
+  transition: all ease 300ms;
+}
+#cancel,
+#ok {
+  width: 0;
+  visibility: hidden;
+  /* width: inherit; */
+  /* visibility: hidden; */
+}
+.idisabled {
+  color: silver;
+  stroke: transparent;
+}
+.idisabled:hover {
+  cursor: not-allowed;
+}
+
+/* END OF ADD SECTION */

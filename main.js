@@ -174,6 +174,13 @@ const removeElement = (el, todo) => {
   todosData.op('delete', todo)
 }
 
+const addElement = task => {
+  let newTodo = new Todo(task)
+  let newLi = lihtml(newTodo)
+  todosData.op('add', newTodo)
+  ul.appendChild(newLi)
+}
+
 window.addEventListener('load', () => {
   //localStorage.removeItem('myTodos')// to reset the data
   if (!localStorage.getItem('myTodos')) localStorage.setItem('myTodos', '[]')
@@ -188,10 +195,60 @@ window.addEventListener('load', () => {
   })
   ul.appendChild(fragment)
 })
-addBtn.addEventListener('click', () => {
-  let todo = new Todo(taskName.value)
-  todosData.op('add', todo)
-  let liElement = lihtml(todo)
-  ul.appendChild(liElement)
-  taskName.value = ''
+
+const addBtn2 = document.querySelector('#addbtn')
+const input = document.querySelector('#taskname')
+const okBtn = document.querySelector('#ok')
+const cancelBtn = document.querySelector('#cancel')
+const divConfirm = document.querySelector('#confirm')
+
+okBtn.addEventListener('click', () => {
+  addElement(input.value)
+  cancelBtn.click()
+})
+
+let disableOKBtn = () => {
+  okBtn.children[0].classList.remove('icheck')
+  okBtn.children[0].classList.add('idisabled')
+}
+
+addBtn2.addEventListener('click', () => {
+  divConfirm.style.width = '440px'
+  input.style.width = '300px'
+
+  okBtn.style.width = '64px'
+  okBtn.style.height = '64px'
+  cancelBtn.style.width = '64px'
+
+  cancelBtn.style.visibility = 'visible'
+  okBtn.style.visibility = 'visible'
+  addBtn2.style.visibility = 'hidden'
+  input.focus()
+})
+cancelBtn.addEventListener('click', () => {
+  divConfirm.style.width = '0px'
+  input.style.width = '0px'
+
+  cancelBtn.style.width = '0px'
+  okBtn.style.width = '0px'
+  okBtn.style.height = '0px'
+
+  cancelBtn.style.visibility = 'hidden'
+  okBtn.style.visibility = 'hidden'
+  addBtn2.style.visibility = 'visible'
+  input.value = ''
+  disableOKBtn()
+})
+
+input.addEventListener('keyup', e => {
+  if (input.value.trim().length < 3) {
+    disableOKBtn()
+  } else {
+    okBtn.children[0].classList.remove('idisabled')
+    okBtn.children[0].classList.add('icheck')
+    if (e.which === 13) {
+      okBtn.click()
+      input.blur()
+    }
+  }
 })
