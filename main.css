@@ -78,7 +78,7 @@ div.icon {
   stroke-dashoffset: 0px;
   /* fill: green; */
   transform: 'translate(5,14)';
-  transition: all 600ms ease;
+  transition: all 300ms ease;
 }
 /* .final:active {
   fill: dodgerblue;
@@ -368,4 +368,7 @@ input[type='checkbox']:checked + .handle {
 }
 ul {
   transition: all 3s ease-in;
+}
+li > div:nth-child(3) > div > span {
+  height: 100%;
 }

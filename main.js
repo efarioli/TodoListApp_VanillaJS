@@ -53,6 +53,7 @@ let todosData
 const addBtn = document.querySelector('#add')
 const ul = document.querySelector('ul')
 const taskName = document.querySelector('#taskname')
+let deleteBtns
 
 const lihtml = todo => {
   //receives a todo object and return a HTML li elemnt
@@ -147,10 +148,30 @@ const lihtml = todo => {
   </div>
 </div>
 `
+  console.log(li.children[2].children[1].children[0])
+
+  li.children[2].children[1].children[0].addEventListener('click', e => {
+    e.preventDefault()
+    e.stopPropagation()
+    removeElement(e, todo)
+  })
   li.children[1].innerText = todo.task
   li.children[0].children[0].children[0].setAttribute('id', `toggle-${todo.id}`)
   li.children[0].children[0].children[1].setAttribute('for', `toggle-${todo.id}`)
   return li
+}
+
+const removeElement = (el, todo) => {
+  let nodeToRemove
+  if (el.target.tagName === 'I') {
+    nodeToRemove = el.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
+  }
+  if (el.target.tagName === 'DIV') {
+    nodeToRemove = el.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode
+  }
+
+  nodeToRemove.parentNode.removeChild(nodeToRemove)
+  todosData.op('delete', todo)
 }
 
 window.addEventListener('load', () => {
