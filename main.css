@@ -7,7 +7,7 @@ div {
   font-size: 2em;
 }
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 15px;
 }
@@ -430,7 +430,7 @@ body > div:nth-child(1) > span > svg {
   display: none;
   width: 0px;
   align-self: center;
-  height: 64px;
+  height: 54px;
   display: flex;
   transition: all ease 300ms;
 }
@@ -444,9 +444,16 @@ body > div:nth-child(1) > span > svg {
 .idisabled {
   color: silver;
   stroke: transparent;
+  height: 100%;
+  width: 100%;
 }
 .idisabled:hover {
   cursor: not-allowed;
 }
 
 /* END OF ADD SECTION */
+
+.stroke__disabled {
+  color: silver;
+  text-decoration: line-through;
+}

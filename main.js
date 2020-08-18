@@ -66,7 +66,7 @@ const lihtml = todo => {
     <label for=""></label>
   </div>
 </div>
-<div  contenteditable="true">walk the dog</div>
+<div  contenteditable="true" class="" >walk the dog</div>
 <div>
   <div>
     <span class="final">
@@ -148,14 +148,24 @@ const lihtml = todo => {
   </div>
 </div>
 `
-  console.log(li.children[2].children[1].children[0])
+  if (todo.completed) {
+    li.children[1].classList.add('stroke__disabled')
+    li.children[0].children[0].children[0].checked = true
+  }
 
   li.children[2].children[1].children[0].addEventListener('click', e => {
     e.preventDefault()
     e.stopPropagation()
     removeElement(e, todo)
   })
+
+  li.children[0].children[0].addEventListener('change', e => {
+    e.stopPropagation()
+    markTaskascompleted(e, todo)
+  })
+
   li.children[1].innerText = todo.task
+
   li.children[0].children[0].children[0].setAttribute('id', `toggle-${todo.id}`)
   li.children[0].children[0].children[1].setAttribute('for', `toggle-${todo.id}`)
   return li
@@ -172,6 +182,13 @@ const removeElement = (el, todo) => {
 
   nodeToRemove.parentNode.removeChild(nodeToRemove)
   todosData.op('delete', todo)
+}
+
+const markTaskascompleted = (e, todo) => {
+  let text = e.target.parentNode.parentNode.parentNode.children[1]
+  text.classList.toggle('stroke__disabled')
+  todo.completed = !todo.completed
+  todosData.op('update', todo)
 }
 
 const addElement = task => {
@@ -216,9 +233,9 @@ addBtn2.addEventListener('click', () => {
   divConfirm.style.width = '440px'
   input.style.width = '300px'
 
-  okBtn.style.width = '64px'
-  okBtn.style.height = '64px'
-  cancelBtn.style.width = '64px'
+  okBtn.style.width = '54px'
+  okBtn.style.height = '54px'
+  cancelBtn.style.width = '54px'
 
   cancelBtn.style.visibility = 'visible'
   okBtn.style.visibility = 'visible'
