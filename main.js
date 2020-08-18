@@ -153,6 +153,21 @@ const lihtml = todo => {
     li.children[0].children[0].children[0].checked = true
   }
 
+  li.children[1].addEventListener('keyup', e => {
+    e.stopPropagation()
+    e.preventDefault()
+    if (e.which === 13) {
+      e.target.blur()
+      e.target.innerText = `${e.target.innerText}`.replace(/\r?\n|\r/g, '').trim()
+
+      updateTaskName(e, todo)
+    }
+  })
+  li.children[1].addEventListener('blur', e => {
+    e.stopPropagation()
+    updateTaskName(e, todo)
+  })
+
   li.children[2].children[1].children[0].addEventListener('click', e => {
     e.preventDefault()
     e.stopPropagation()
@@ -184,6 +199,13 @@ const removeElement = (el, todo) => {
   todosData.op('delete', todo)
 }
 
+const updateTaskName = (e, todo) => {
+  console.log(e)
+  // console.log(e.target.innerText())
+  todo.task = e.target.innerText.replace(/\r?\n|\r/g, '')
+  console.log(e.target.innerText)
+  todosData.op('update', todo)
+}
 const markTaskascompleted = (e, todo) => {
   let text = e.target.parentNode.parentNode.parentNode.children[1]
   text.classList.toggle('stroke__disabled')
